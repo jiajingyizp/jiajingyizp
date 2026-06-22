@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贾竞一 · Personal Portfolio</title>
+  <meta name="description" content="贾竞一 UX/UI设计师个人作品集 · Personal Portfolio 2026">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg-light:#f2f2f2;--bg-dark:#323232;--bg-white:#ffffff;--bg-off:#f8f8f8;
+      --accent:#1778fc;--text:#111;--mid:#444;--muted:#888;--white:#fff;
+      --cn:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+      --en:'Poppins','Inter',system-ui,sans-serif;
+      --t-hero:clamp(52px,8.75vw,168px);
+      --t-hero-ls:clamp(-3.6px,-0.612vw,-11.76px);
+      --t-sub:clamp(28px,4.375vw,84px);
+      --t-sub-ls:clamp(-1.4px,-0.218vw,-4.2px);
+      --t-h2:clamp(36px,5vw,96px);
+      --t-h3:clamp(20px,2.5vw,44px);
+      --t-body:clamp(15px,1.25vw,22px);
+      --t-sm:clamp(13px,1vw,17px);
+      --t-xs:clamp(11px,0.8vw,13px);
+      --ease:cubic-bezier(.25,.46,.45,.94);
+      --ease2:cubic-bezier(.16,1,.3,1);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--cn);background:var(--bg-light);color:var(--text);overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+
+    /* NAV */
+    #nav{
+      position:fixed;inset:0 0 auto 0;z-index:999;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px clamp(20px,3.1vw,60px);
+      transition:background .35s ease,color .35s ease;
+    }
+    #nav.on-light{background:rgba(242,242,242,.88);backdrop-filter:blur(24px) saturate(180%)}
+    #nav.on-dark {background:rgba(50,50,50,.88);   backdrop-filter:blur(24px) saturate(180%);color:#fff}
+    #nav.on-white{background:rgba(255,255,255,.9);  backdrop-filter:blur(24px) saturate(180%)}
+    #nav.on-off  {background:rgba(248,248,248,.9);  backdrop-filter:blur(24px) saturate(180%)}
+    .nav-logo{font-family:var(--cn);font-weight:900;font-size:clamp(15px,1.25vw,22px);letter-spacing:-.03em;cursor:pointer}
+    .nav-links{display:flex;gap:clamp(20px,2.5vw,48px)}
+    .nav-link{font-family:var(--en);font-weight:600;font-size:clamp(12px,.9vw,15px);opacity:.65;cursor:pointer;transition:opacity .2s}
+    .nav-link:hover{opacity:1}
+
+    /* ANIM */
+    [da]{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    [da="f"]{transform:none}
+    [da].v{opacity:1;transform:none}
+    [dd="1"]{transition-delay:.12s}[dd="2"]{transition-delay:.24s}
+    [dd="3"]{transition-delay:.36s}[dd="4"]{transition-delay:.48s}
+    [dd="5"]{transition-delay:.6s}
+
+    /* COMMONS */
+    section{position:relative;overflow:hidden}
+    .full{min-height:100vh}
+
+    /* ── HOME ── */
+    #home{background:var(--bg-light);min-height:100vh}
+    .h-arrow-bg{
+      position:absolute;top:6.5%;left:-3%;width:105%;height:auto;
+      transform:rotate(5.54deg);transform-origin:center;
+      pointer-events:none;z-index:0;will-change:transform;
+    }
+    .h-labels{
+      position:absolute;top:clamp(78px,7.5vw,144px);left:clamp(20px,30.5vw,585px);
+      z-index:2;font-family:var(--en);font-weight:600;font-size:var(--t-body);
+      letter-spacing:-.07em;line-height:1.35;
+    }
+    .h-year{
+      position:absolute;top:50%;right:clamp(16px,2.2vw,44px);
+      transform:translateY(-50%) rotate(90deg);
+      font-family:var(--en);font-weight:600;font-size:var(--t-sm);
+      letter-spacing:-.07em;z-index:2;
+    }
+    .h-text{position:absolute;bottom:clamp(50px,8vw,120px);left:0;right:0;z-index:2}
+    .h-name{
+      display:block;font-family:var(--cn);font-weight:900;
+      font-size:var(--t-hero);letter-spacing:var(--t-hero-ls);line-height:1;
+      margin-left:clamp(20px,30vw,575px);
+    }
+    .h-title{
+      display:block;font-family:var(--cn);font-weight:900;
+      font-size:var(--t-hero);letter-spacing:var(--t-hero-ls);line-height:1;
+      margin-left:clamp(20px,5.9vw,114px);margin-top:.04em;
+    }
+    .h-en{
+      display:flex;align-items:center;gap:.25em;
+      font-family:var(--en);font-weight:700;
+      font-size:var(--t-sub);letter-spacing:var(--t-sub-ls);line-height:1;
+      margin-left:clamp(20px,30vw,575px);margin-top:.1em;
+    }
+    .h-arrow-icon{width:clamp(14px,1.82vw,35px);height:auto;transform:rotate(45deg);flex-shrink:0}
+    .h-contact{
+      position:absolute;right:clamp(20px,3.1vw,60px);bottom:clamp(50px,8vw,120px);
+      text-align:right;font-family:var(--en);font-weight:600;
+      font-size:var(--t-sm);letter-spacing:-.03em;line-height:1.8;z-index:2;
+    }
+
+    /* ── CHAPTER ── */
+    .chapter{background:var(--bg-dark);color:var(--white);min-height:100vh}
+    .ch-arrow{position:absolute;top:-9%;left:-11.7%;width:102%;pointer-events:none;z-index:0}
+    .ch-num{
+      position:absolute;top:8%;right:-2%;
+      font-family:var(--en);font-weight:700;
+      font-size:clamp(140px,48vw,869px);line-height:1;letter-spacing:-.05em;
+      color:rgba(255,255,255,.05);user-select:none;pointer-events:none;z-index:0;
+    }
+    .ch-body{position:absolute;bottom:clamp(60px,8vw,160px);left:clamp(20px,14.3vw,275px);z-index:2}
+    .ch-h-en{display:block;font-family:var(--en);font-weight:700;font-size:var(--t-hero);letter-spacing:-.05em;line-height:1}
+    .ch-h-cn{display:block;font-family:var(--cn);font-weight:900;font-size:var(--t-hero);letter-spacing:var(--t-hero-ls);line-height:1}
+    .ch-sub{display:block;font-family:var(--en);font-weight:600;font-size:var(--t-sub);letter-spacing:var(--t-sub-ls);line-height:1;margin-top:.1em}
+    .ch-foot{position:absolute;left:clamp(20px,2.2vw,43px);bottom:clamp(18px,2.5vw,36px);
+      font-family:var(--en);font-weight:600;font-size:clamp(12px,1.46vw,28px);letter-spacing:-.04em;opacity:.5;z-index:2}
+
+    /* ── CASE STUDY ── */
+    .cs{padding:clamp(80px,10vw,160px) 0}
+    .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,80px)}
+    .cs-eyebrow{font-family:var(--en);font-weight:600;font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(16px,2vw,28px)}
+    .cs-title{font-family:var(--cn);font-weight:900;font-size:var(--t-h2);letter-spacing:-.04em;line-height:1.1;margin-bottom:clamp(12px,1.5vw,20px)}
+    .cs-kpi{font-family:var(--cn);font-weight:700;font-size:var(--t-h3);letter-spacing:-.03em;color:var(--accent);margin-bottom:clamp(24px,3vw,44px)}
+    .cs-desc{font-family:var(--cn);font-size:var(--t-body);line-height:1.85;color:var(--mid);max-width:740px;margin-bottom:clamp(48px,6vw,96px)}
+    
+    /* stats */
+    .sg{display:grid;grid-template-columns:1fr auto 1fr 1fr;gap:clamp(12px,1.5vw,24px);align-items:center;margin-bottom:clamp(56px,7vw,112px)}
+    @media(max-width:640px){.sg{grid-template-columns:1fr 1fr}.sg-arrow{display:none}}
+    .sc{padding:clamp(20px,2.5vw,40px) clamp(16px,2vw,32px);border:1.5px solid #e0e0e0;border-radius:clamp(14px,1.5vw,24px);background:#fff}
+    .sc.ac{border-color:var(--accent)}.sc.bc{background:#eef5ff;border-color:var(--accent)}
+    .sn{font-family:var(--en);font-weight:700;font-size:clamp(40px,5vw,96px);letter-spacing:-.04em;line-height:1}
+    .sn span{font-size:.5em}.sn.b{color:var(--accent)}
+    .sl{font-family:var(--cn);font-size:clamp(12px,1vw,16px);color:var(--muted);margin-top:8px}
+    .sg-arrow{font-size:clamp(24px,3vw,48px);color:#ccc;text-align:center;justify-self:center}
+
+    /* process */
+    .pr{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.5vw,20px);margin-bottom:clamp(56px,7vw,112px)}
+    @media(max-width:768px){.pr{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){.pr{grid-template-columns:1fr}}
+    .pc{padding:clamp(18px,2vw,32px);background:#f5f5f5;border-radius:clamp(14px,1.5vw,22px)}
+    .pn{font-family:var(--en);font-weight:700;font-size:var(--t-xs);letter-spacing:.12em;color:var(--accent);margin-bottom:10px}
+    .pt{font-family:var(--cn);font-weight:700;font-size:clamp(16px,1.25vw,22px);margin-bottom:8px}
+    .pd{font-family:var(--cn);font-size:clamp(12px,.9vw,15px);color:var(--mid);line-height:1.65}
+
+    /* insight cards */
+    .ig{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-bottom:clamp(56px,7vw,96px)}
+    @media(max-width:900px){.ig{grid-template-columns:1fr}}
+    .ic{padding:clamp(28px,3vw,52px) clamp(24px,2.5vw,44px);border-radius:clamp(18px,2vw,28px);color:var(--white)}
+    .ii{font-size:clamp(28px,2.5vw,44px);margin-bottom:20px}
+    .it{font-family:var(--cn);font-weight:700;font-size:clamp(18px,1.5vw,26px);margin-bottom:14px}
+    .id{font-family:var(--cn);font-size:clamp(13px,1vw,17px);line-height:1.75;color:rgba(255,255,255,.72)}
+
+    /* result banner */
+    .rb{display:flex;align-items:center;gap:clamp(20px,3vw,48px);padding:clamp(32px,4vw,64px) clamp(28px,3.5vw,56px);
+      background:linear-gradient(135deg,#1778fc,#0050c8);border-radius:clamp(20px,2vw,32px);color:var(--white);flex-wrap:wrap}
+    .re{font-size:clamp(48px,7vw,120px);line-height:1;flex-shrink:0}
+    .rt .rtt{font-family:var(--cn);font-weight:700;font-size:clamp(20px,2vw,36px);margin-bottom:12px}
+    .rt .rtb{font-family:var(--cn);font-size:var(--t-body);line-height:1.8;opacity:.85;max-width:660px}
+
+    /* divider */
+    .dv{height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.1) 50%,transparent);margin:0 clamp(20px,4vw,80px)}
+
+    /* mobile */
+    @media(max-width:768px){
+      .h-year,.h-contact{display:none}
+      .h-labels{left:clamp(20px,5vw,40px)}
+      .h-name{margin-left:clamp(20px,8vw,60px)}
+      .h-en{margin-left:clamp(20px,8vw,60px)}
+      .h-text{position:static;padding-top:42vh;padding-bottom:clamp(40px,8vw,80px)}
+      .ch-body{left:clamp(20px,5vw,40px)}
+    }
+    @media(prefers-reduced-motion:reduce){[da]{opacity:1!important;transform:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <span class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">贾竞一</span>
+  <div class="nav-links">
+    <span class="nav-link" onclick="goto('chapter1')">UX 设计</span>
+    <span class="nav-link" onclick="goto('chapter2')">品牌设计</span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     SECTION 1 · 首页
+════════════════════════════════════ -->
+<section id="home" class="full" data-nav="on-light">
+  <img class="h-arrow-bg" id="homeArrow"
+    src="https://www.figma.com/api/mcp/asset/27ef7895-97e6-4e63-9e1d-d7d658ffdd4b"
+    alt="" aria-hidden="true" loading="eager">
+
+  <div class="h-labels" da="f" dd="1">
+    UI&nbsp;/&nbsp;UX<br>RedBook Creator<br>Brand
+  </div>
+  <div class="h-year" da="f" dd="2">2026</div>
+
+  <div class="h-text">
+    <span class="h-name"  da dd="1">贾竞一</span>
+    <span class="h-title" da dd="2">个人作品集</span>
+    <span class="h-en"    da dd="3">
+      <img class="h-arrow-icon"
+        src="https://www.figma.com/api/mcp/asset/a86b5b36-1455-4860-ace3-940e847314e9"
+        alt="" aria-hidden="true">
+      Personal Portfolio
+    </span>
+  </div>
+
+  <div class="h-contact" da="f" dd="4">
+    Jiafang_Jaye（微信）<br>
+    185-1107-0259<br>
+    jjy_job@163.com
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SECTION 2 · 章节1 Cover
+════════════════════════════════════ -->
+<section id="chapter1" class="chapter full" data-nav="on-dark">
+  <img class="ch-arrow" src="https://www.figma.com/api/mcp/asset/04a6f66a-7b34-462f-aee7-58c7d01ea8e5" alt="" aria-hidden="true">
+  <div class="ch-num" aria-hidden="true">01</div>
+  <div class="ch-body">
+    <span class="ch-h-en" da dd="1">UX UI</span>
+    <span class="ch-h-cn" da dd="2">设计</span>
+    <span class="ch-sub"  da dd="3">UX UI Design</span>
+  </div>
+  <div class="ch-foot">Personal Portfolio</div>
+</section>
+
+<!-- ══════════════════════════════════
+     SECTION 3 · AI 模拟面试
+════════════════════════════════════ -->
+<section id="ai-interview" class="cs" style="background:var(--bg-white)" data-nav="on-white">
+  <div class="wrap">
+    <p class="cs-eyebrow" da dd="1">CASE 01 &nbsp;·&nbsp; UX 设计</p>
+    <h2 class="cs-title" da dd="2">AI 模拟面试<br>用户体验优化</h2>
+    <p  class="cs-kpi"   da dd="3">2次内面试完成率提升 49%</p>
+    <p  class="cs-desc"  da dd="4">
+      2024年，AI浪潮下，公司决定开发AI模拟面试模块，我一人成军，完成 UX/UI 以及视觉设计的全部工作，同时借助 AI 工具对面试官进行视觉处理。上线初期遇到面试完成率不高的问题，通过分析与调整，最终成功解决。
+    </p>
+
+    <!-- Before → After stats -->
+    <div class="sg" da>
+      <div class="sc">
+        <div class="sn">33<span>%</span></div>
+        <div class="sl">原2次内完成率</div>
+      </div>
+      <div class="sg-arrow" aria-hidden="true">→</div>
+      <div class="sc ac">
+        <div class="sn b">82<span>%</span></div>
+        <div class="sl">现2次内完成率</div>
+      </div>
+      <div class="sc bc">
+        <div class="sn b">+49</div>
+        <div class="sl">个百分点提升</div>
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div class="pr">
+      <div class="pc" da>
+        <div class="pn">01 · 用户调研</div>
+        <div class="pt">深度访谈 + 埋点复盘</div>
+        <div class="pd">访谈12名应届生及跳槽者，结合全量行为埋点，定位真实流失痛点</div>
+      </div>
+      <div class="pc" da dd="1">
+        <div class="pn">02 · 数据分析</div>
+        <div class="pt">关键流失节点</div>
+        <div class="pd">23%用户在第1题倒计时结束后跳出——紧张导致未点击"开始作答"</div>
+      </div>
+      <div class="pc" da dd="2">
+        <div class="pn">03 · 设计策略</div>
+        <div class="pt">交互 + UI 双线并进</div>
+        <div class="pd">布局重排聚焦视线；沉浸式全屏面试间；AI 面试官形象拟真化</div>
+      </div>
+      <div class="pc" da dd="3">
+        <div class="pn">04 · 验证上线</div>
+        <div class="pt">目标超额达成</div>
+        <div class="pd">面试完成率33%→82%，核心指标显著提升，设计目标全面达成</div>
+      </div>
+    </div>
+
+    <!-- Insight Cards -->
+    <div class="ig">
+      <div class="ic" style="background:#1e1e2e" da>
+        <div class="ii">🎙️</div>
+        <div class="it">沉浸式面试间</div>
+        <div class="id">16:9 全屏自适应，空间化 UI 复刻真实面试氛围。题干字幕置于屏幕下方，随语音生成自动滚动，沉浸感拉满。</div>
+      </div>
+      <div class="ic" style="background:#1a2c1a" da dd="1">
+        <div class="ii">🖱️</div>
+        <div class="it">交互布局重排</div>
+        <div class="id">功能按钮高度集中，视线路径最短化，100% 避免找不到"开始作答"。倒计时结束自动录音，降低操作门槛。</div>
+      </div>
+      <div class="ic" style="background:#2c1a1a" da dd="2">
+        <div class="ii">🤖</div>
+        <div class="it">AI 面试官拟真化</div>
+        <div class="id">自然表情、手势动作、口型吻合，削弱机械感。叠加真实面试环境背景，降低紧张感，减少中途退出率。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ══════════════════════════════════
+     SECTION 4 · AI 信贷助手
+════════════════════════════════════ -->
+<section id="ai-credit" class="cs" style="background:var(--bg-off)" data-nav="on-off">
+  <div class="wrap">
+    <p class="cs-eyebrow" da dd="1">CASE 02 &nbsp;·&nbsp; UX + 视觉设计</p>
+    <h2 class="cs-title" da dd="2">信贷助手<br>信任破冰</h2>
+    <p  class="cs-kpi"   da dd="3">银小智 · AI Credit Assistant</p>
+    <p  class="cs-desc"  da dd="4">
+      第一次完全独立承接商业项目——甲方在小红书上与我联系，比稿后达成合作，着重对 IP 形象和 UI 进行全链路设计。核心思路是「信任破冰」：分三个关键节点逐步建立用户对信贷产品的信任感，提升借款签约转化率。
+    </p>
+
+    <!-- Three design moments -->
+    <div class="ig">
+      <div class="ic" style="background:#0f1923" da>
+        <div class="ii">📱</div>
+        <div class="it">破冰第一锤</div>
+        <div class="id">
+          <strong style="color:#fff;display:block;margin-bottom:8px">用户打开 APP 时</strong>
+          以白色 Q 版小老虎「银小智」为 IP 核心，传递干净、安全感。权威标识搭配盾牌图标，突出"持牌机构"，建立第一道信任。
+        </div>
+      </div>
+      <div class="ic" style="background:#0d1f30" da dd="1">
+        <div class="ii">📋</div>
+        <div class="it">破冰第二锤</div>
+        <div class="id">
+          <strong style="color:#fff;display:block;margin-bottom:8px">用户填写信息时</strong>
+          授权协议中重点突出"用途""有效期"等关键词，缓解隐私焦虑，让用户放心授权并完整填写信息。
+        </div>
+      </div>
+      <div class="ic" style="background:#131f13" da dd="2">
+        <div class="ii">✅</div>
+        <div class="it">破冰第三锤</div>
+        <div class="id">
+          <strong style="color:#fff;display:block;margin-bottom:8px">确认借款时</strong>
+          利率清晰展示并支持自主试算，体现透明无套路。结合 IP 温暖气质，巩固长期信任，提升签约转化率。
+        </div>
+      </div>
+    </div>
+
+    <!-- Client feedback -->
+    <div class="rb" da>
+      <div class="re">🌟</div>
+      <div class="rt">
+        <div class="rtt">甲方高度评价 · 终获好评</div>
+        <p class="rtb">
+          "通过 IP 提升产品信任度的思考甲方也很赞同，通过设计解决产品问题是每位设计师必将经历的课题。合作过程流畅清晰，结果十分满意。"——同时也是我第一次完成完整商业闭环：获客→比稿→设计→协调开发→验收→结款。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SECTION 5 · 章节2 Cover
+════════════════════════════════════ -->
+<section id="chapter2" class="chapter full" data-nav="on-dark">
+  <img class="ch-arrow" src="https://www.figma.com/api/mcp/asset/21d38335-1663-4537-a88d-86997a7b5623" alt="" aria-hidden="true">
+  <div class="ch-num" aria-hidden="true">02</div>
+  <div class="ch-body">
+    <span class="ch-h-cn" da dd="1">品牌</span>
+    <span class="ch-h-cn" da dd="2">设计</span>
+    <span class="ch-sub"  da dd="3">Brand Design</span>
+  </div>
+  <div class="ch-foot">Personal Portfolio</div>
+</section>
+
+<script>
+  /* smooth scroll */
+  function goto(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+  /* scroll-triggered animations */
+  const els=document.querySelectorAll('[da]');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>obs.observe(el));
+
+  /* home elements always visible on load */
+  window.addEventListener('load',()=>{
+    document.querySelectorAll('#home [da]').forEach(el=>el.classList.add('v'));
+  });
+
+  /* nav theming */
+  const nav=document.getElementById('nav');
+  const sects=[...document.querySelectorAll('section[data-nav]')];
+  function updateNav(){
+    const y=window.scrollY;
+    let cur=null;
+    sects.forEach(s=>{if(y>=s.offsetTop-81)cur=s});
+    if(y<10){nav.className='';return}
+    nav.className=cur?cur.dataset.nav:'on-light';
+  }
+  window.addEventListener('scroll',updateNav,{passive:true});
+  updateNav();
+
+  /* home arrow parallax */
+  const homeArrow=document.getElementById('homeArrow');
+  if(homeArrow){
+    const homeH=()=>document.getElementById('home').offsetHeight;
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY,h=homeH();
+      if(y<h)homeArrow.style.transform=`rotate(5.54deg) translateY(${y*.18}px)`;
+    },{passive:true});
+  }
+
+  /* chapter arrow parallax */
+  document.querySelectorAll('.ch-arrow').forEach(a=>{
+    const s=a.closest('section');
+    window.addEventListener('scroll',()=>{
+      const t=s.getBoundingClientRect().top;
+      const p=-t/window.innerHeight;
+      if(Math.abs(p)<1.5)a.style.transform=`translateY(${p*40}px)`;
+    },{passive:true});
+  });
+</script>
+</body>
+</html>
